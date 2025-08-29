@@ -1,20 +1,45 @@
+// src/models/listing.model.js
 import mongoose from 'mongoose';
+import { skuFrom } from '../utils/seed.js'; // keep .js for ESM
+
 const { Schema, Types } = mongoose;
 
 const listingSchema = new Schema({
-  title: { type: String, required: true, index: true },
-  description: { type: String, required: true },
-  price: { type: Number, required: true }, // paise
-  category: { type: String, index: true },
-  location: String,
-  images: { type: Array, default: [] },
-  sellerId: { type: Types.ObjectId, ref: 'User', required: true, index: true },
-  sku: { type: String, required: true, unique: true },
-  isFeatured: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
-});
-listingSchema.index({ createdAt: -1 });
-listingSchema.pre('save', function(next){ this.updatedAt = new Date(); next(); });
+  title:      { type: String, required: true, index: true, trim: true },
+  description:{ type: String, required: true, trim: true },
+  price:      { type: Number, required: true, min: 0 }, // paise
+  category:   { type: String, index: true, trim: true },
+  location:   { type: String, trim: true },
+  images:     { type: [String], default: [] },
+  sellerId:   { type: Types.ObjectId, ref: 'User', required: true, index: true },
 
-export const Listing = mongoose.model('Listing', listingSchema);
+  sku:        { type: String, unique: true, immutable: true },
+
+  isFeatured: { type: Boolean, default: false },
+  createdAt:  { type: Date, default: Date.now },
+  updatedAt:  { type: Date, default: Date.now }
+});
+
+// Indexes
+listingSchema.index({ createdAt: -1 });
+listingSchema.index({ category: 1, price: 1, createdAt: -1 });
+listingSchema.index({ title: 'text', description: 'text' });
+
+// Fill SKU deterministically before validation
+listingSchema.pre('validate', function (next) {
+  if (!this.sku && this._id) this.sku = skuFrom(this._id.toString());
+  next();
+});
+
+// Touch updatedAt
+listingSchema.pre('save', function (next) {
+  this.updatedAt = new Date();
+  next();
+});
+
+// IMPORTANT: guard against OverwriteModelError during nodemon reloads
+const Listing =
+  mongoose.models.Listing || mongoose.model('Listing', listingSchema);
+
+export default Listing;     // <-- default export for `import Listing from ...`
+export { Listing };         // <-- also allow `import { Listing } from ...`

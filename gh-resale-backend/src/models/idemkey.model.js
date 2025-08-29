@@ -13,4 +13,7 @@ const idemKeySchema = new Schema({
 }, { _id: false });
 
 idemKeySchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 }); 
-export const IdemKey = mongoose.model('IdemKey', idemKeySchema);
+const IdemKey = mongoose.model('IdemKey', idemKeySchema) || mongoose.model.IdemKey;
+
+export default IdemKey;
+export {IdemKey};

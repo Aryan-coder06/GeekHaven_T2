@@ -20,4 +20,6 @@ const orderSchema = new Schema({
 });
 orderSchema.index({ createdAt: -1 });
 
-export const Order = mongoose.model('Order', orderSchema);
+const Order = mongoose.model('Order', orderSchema) || mongoose.model.Order;
+export default Order;
+export {Order};

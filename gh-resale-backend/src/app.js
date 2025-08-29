@@ -13,6 +13,12 @@ import { errorHandler } from './middlewares/error.js';
 import authRoutes from './modules/auth/auth.routes.js';
 import userRoutes from './modules/user/user.routes.js';
 
+import listingsRouter from './routes/listings.route.js';
+import favoritesRouter from './routes/favorites.route.js';
+import checkoutRouter from './routes/checkout.route.js';
+
+
+
 const app = express();
 
 app.use(cors({ origin: ENV.CORS_ORIGIN, credentials: true }));
@@ -29,6 +35,10 @@ app.use('/', specialRoutes);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+
+app.use('/listings', listingsRouter);
+app.use('/favorites', favoritesRouter);
+app.use('/checkout', checkoutRouter);
 
 
 app.use((req, res) => res.status(404).json({ error: 'Not found' }));
