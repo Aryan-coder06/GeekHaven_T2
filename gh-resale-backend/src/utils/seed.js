@@ -2,9 +2,6 @@
 import crypto from 'crypto';
 import { ENV } from '../config/env.js';
 
-/**
- * Canonical JSON stringifier so HMACs are stable no matter the key order.
- */
 function canonicalJSONStringify(obj) {
   const seen = new WeakSet();
   const sorter = (value) => {
@@ -65,7 +62,6 @@ export function platformFeeBackend(subtotal, seed = ENV.ASSIGNMENT_SEED) {
 export function skuFrom(listingId, seed = ENV.ASSIGNMENT_SEED) {
   const idStr = String(listingId);
 
-  // HMAC over (seed as key) and listingId as message
   const macHex = crypto
     .createHmac('sha256', String(seed))
     .update(idStr)

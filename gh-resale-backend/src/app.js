@@ -16,7 +16,7 @@ import userRoutes from './modules/user/user.routes.js';
 import listingsRouter from './routes/listings.route.js';
 import favoritesRouter from './routes/favorites.route.js';
 import checkoutRouter from './routes/checkout.route.js';
-
+import cartRouter from './routes/cart.route.js';
 
 
 const app = express();
@@ -39,6 +39,7 @@ app.use('/api/user', userRoutes);
 app.use('/listings', listingsRouter);
 app.use('/favorites', favoritesRouter);
 app.use('/checkout', checkoutRouter);
+app.use('/cart', cartRouter);
 
 
 app.use((req, res) => res.status(404).json({ error: 'Not found' }));

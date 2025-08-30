@@ -15,6 +15,7 @@ const listingSchema = new Schema({
 
   sku:        { type: String, unique: true, immutable: true },
 
+  sellerEmail: { type: String},
   isFeatured: { type: Boolean, default: false },
   createdAt:  { type: Date, default: Date.now },
   updatedAt:  { type: Date, default: Date.now }
@@ -31,13 +32,11 @@ listingSchema.pre('validate', function (next) {
   next();
 });
 
-// Touch updatedAt
 listingSchema.pre('save', function (next) {
   this.updatedAt = new Date();
   next();
 });
 
-// IMPORTANT: guard against OverwriteModelError during nodemon reloads
 const Listing =
   mongoose.models.Listing || mongoose.model('Listing', listingSchema);
 

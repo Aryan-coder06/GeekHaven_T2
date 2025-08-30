@@ -4,36 +4,55 @@ import Listing from '../models/listing.model.js';
 
 const router = express.Router();
 
-// GET /listings?search=&category=&min=&max=&page=1
+
+// GET /listings?search=&category=&min=&max=&page=1&limit=12&sort=-createdAt
 router.get('/', async (req, res, next) => {
   try {
-    const { search = '', category, min, max, page = 1 } = req.query;
+    const {
+      search = '',
+      category,
+      min,
+      max,
+      page = 1,
+      limit = 12,
+      sort = '-createdAt',
+    } = req.query;
+
     const q = {};
-    if (search) q.$or = [
-      { title: { $regex: search, $options: 'i' } },
-      { description: { $regex: search, $options: 'i' } }
-    ];
+    if (search) {
+      q.$or = [
+        { title: { $regex: search, $options: 'i' } },
+        { description: { $regex: search, $options: 'i' } },
+      ];
+    }
     if (category) q.category = category;
     if (min) q.price = { ...q.price, $gte: Number(min) };
     if (max) q.price = { ...q.price, $lte: Number(max) };
 
-    const limit = 10;
-    const docs = await Listing.find(q)
-      .sort({ createdAt: -1 })
-      .skip((Number(page)-1)*limit)
-      .limit(limit)
-      .lean();
+    const skip = (Number(page) - 1) * Number(limit);
 
-    res.json({ listings: docs, nextPage: docs.length === limit ? Number(page)+1 : null });
+    const [items, total] = await Promise.all([
+      Listing.find(q)
+        .populate('sellerId', 'name avatar sellerProfile rating')
+        .sort(String(sort))
+        .skip(skip)
+        .limit(Number(limit))
+        .lean(),
+      Listing.countDocuments(q),
+    ]);
+
+    res.json({ items, total, page: Number(page), limit: Number(limit) });
   } catch (e) { next(e); }
 });
 
 // GET /listings/:id
 router.get('/:id', async (req, res, next) => {
   try {
-    const doc = await Listing.findById(req.params.id).lean();
-    if (!doc) return res.status(404).json({ message: 'Not found' });
-    res.json(doc);
+    const item = await Listing.findById(req.params.id)
+      .populate('sellerId', 'name avatar sellerProfile rating')
+      .lean();
+    if (!item) return res.status(404).json({ message: 'Not found' });
+    res.json(item);
   } catch (e) { next(e); }
 });
 

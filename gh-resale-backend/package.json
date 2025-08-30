@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --runInBand"
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
+    "seed:json": "node src/utils/import-products-json.js",
+    "seed:json:reset": "node src/utils/import-products-json.js --reset",
+    "seed:json:file": "node src/utils/import-products-json.js --file ./src/data/products.json",
+    "seed:json:seller": "node src/utils/import-products-json.js --seller seller@example.com"
   },
   "keywords": [],
   "author": "",

@@ -7,7 +7,9 @@ const favoriteSchema = new Schema({
 }, { timestamps: true });
 
 favoriteSchema.index({ userId: 1, listingId: 1 }, { unique: true });
-const Favorite = mongoose.model('Favorite', favoriteSchema) || mongoose.model.Favorite;
-
+// backend/src/models/favorite.model.js
+const Favorite = mongoose.models.Favorite || mongoose.model('Favorite', favoriteSchema);
 export default Favorite;
+
+
 export {Favorite};
