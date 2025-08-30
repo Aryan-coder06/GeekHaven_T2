@@ -126,11 +126,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     refresh();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const login = async (email: string, password: string) => {
-    // Demo path
+    
     if (DEMO_MODE && email === "demo@example.com" && password === "demo") {
       const authData = { user: mockUser };
       localStorage.setItem(LOCAL_KEY, JSON.stringify(authData));
@@ -164,8 +163,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const updateProfile = async (updates: Partial<User>) => {
-    // Optional: call backend /api/user/update here if you have it
-    // For now, update client-side so UI reflects changes instantly
     setState(prev => {
       if (!prev.user) return prev;
       const updated = { ...prev.user, ...updates };
