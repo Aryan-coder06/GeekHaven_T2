@@ -21,7 +21,8 @@ import cartRouter from './routes/cart.route.js';
 
 const app = express();
 
-app.use(cors({ origin: ENV.CORS_ORIGIN, credentials: true }));
+app.use(cors());
+
 app.use(helmet());
 app.use(compression());
 app.use(express.json({ limit: '1mb' }));
