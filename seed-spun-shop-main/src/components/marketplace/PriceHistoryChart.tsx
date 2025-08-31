@@ -12,7 +12,7 @@ interface PriceHistoryChartProps {
 }
 
 export function PriceHistoryChart({ data }: PriceHistoryChartProps) {
-  // Format data for recharts
+
   const chartData = data
     .sort((a, b) => a.date.getTime() - b.date.getTime())
     .map((item) => ({

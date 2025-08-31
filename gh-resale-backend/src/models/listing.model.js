@@ -1,6 +1,5 @@
-// src/models/listing.model.js
 import mongoose from 'mongoose';
-import { skuFrom } from '../utils/seed.js'; // keep .js for ESM
+import { skuFrom } from '../utils/seed.js'; 
 
 const { Schema, Types } = mongoose;
 
@@ -21,12 +20,11 @@ const listingSchema = new Schema({
   updatedAt:  { type: Date, default: Date.now }
 });
 
-// Indexes
 listingSchema.index({ createdAt: -1 });
+listingSchema.index({ location: 1});
 listingSchema.index({ category: 1, price: 1, createdAt: -1 });
 listingSchema.index({ title: 'text', description: 'text' });
 
-// Fill SKU deterministically before validation
 listingSchema.pre('validate', function (next) {
   if (!this.sku && this._id) this.sku = skuFrom(this._id.toString());
   next();
@@ -40,5 +38,5 @@ listingSchema.pre('save', function (next) {
 const Listing =
   mongoose.models.Listing || mongoose.model('Listing', listingSchema);
 
-export default Listing;     // <-- default export for `import Listing from ...`
-export { Listing };         // <-- also allow `import { Listing } from ...`
+export default Listing;     // tryinh to fix<-- default export for `import Listing from ...`
+export { Listing };        

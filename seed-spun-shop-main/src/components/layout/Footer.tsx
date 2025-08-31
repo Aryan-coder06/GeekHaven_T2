@@ -20,13 +20,13 @@ export function Footer() {
               <span className="text-xl font-bold text-primary">Marketplace</span>
             </div>
             <p className="text-muted-foreground text-sm">
-              Your trusted reselling platform for unique finds and amazing deals.
+              Your trusted reselling platform for unique finds and amazing deals. 
             </p>
             <div className="flex space-x-2">
               <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
+              <a href="https://github.com/Aryan-coder06" className="text-muted-foreground hover:text-primary transition-smooth">
                 <Github className="w-5 h-5" />
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
@@ -54,25 +54,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Support */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-foreground">Support</h3>
-            <div className="space-y-2 text-sm">
-              <Link to="/help" className="block text-muted-foreground hover:text-primary transition-smooth">
-                Help Center
-              </Link>
-              <Link to="/contact" className="block text-muted-foreground hover:text-primary transition-smooth">
-                Contact Us
-              </Link>
-              <Link to="/safety" className="block text-muted-foreground hover:text-primary transition-smooth">
-                Safety Tips
-              </Link>
-              <Link to="/terms" className="block text-muted-foreground hover:text-primary transition-smooth">
-                Terms of Service
-              </Link>
-            </div>
-          </div>
-
           {/* Utility Pages */}
           <div className="space-y-4">
             <h3 className="font-semibold text-foreground">Developer</h3>
@@ -93,7 +74,7 @@ export function Footer() {
         <div className="border-t border-border mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-muted-foreground">
-              © 2024 Marketplace. Built with{' '}
+              Marketplace. Built with{' '}
               <Heart className="w-4 h-4 inline text-red-500" />{' '}
               using seed: <span className="font-mono text-primary">{seed}</span>
             </div>

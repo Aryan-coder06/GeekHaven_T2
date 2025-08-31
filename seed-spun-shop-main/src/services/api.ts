@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-// Mock API base URL - in production this would be your actual API
 const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
 
 export const api = axios.create({
@@ -56,7 +55,6 @@ api.interceptors.response.use(
   }
 );
 
-// Product interfaces
 export interface Product {
   id: string;
   sku:string;
@@ -112,7 +110,7 @@ export interface CheckoutResponse {
 // API functions
 export const productsApi = {
   getProducts: async (page = 1, limit = 10, search?: string, category?: string, filters?: any): Promise<{ products: Product[]; total: number }> => {
-    // Mock implementation - replace with real API calls
+    
     const mockProducts = generateMockProducts();
     
     let filteredProducts = mockProducts;
@@ -169,10 +167,9 @@ export const productsApi = {
   },
 
   checkout: async (request: CheckoutRequest): Promise<CheckoutResponse> => {
-    // Mock checkout implementation
+
     const response = await api.post('/checkout', request);
     
-    // Generate mock response with signature
     const mockResponse: CheckoutResponse = {
       orderId: `order-${Date.now()}`,
       platformFee: request.platformFee,
@@ -181,7 +178,6 @@ export const productsApi = {
       signature: `sig-${Math.random().toString(36).substr(2, 9)}`,
     };
 
-    // Store signature for developer display
     sessionStorage.setItem('checkout-signature', mockResponse.signature);
     
     return mockResponse;

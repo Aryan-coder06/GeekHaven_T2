@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get('/', userAuth, async (req,res,next)=>{
   try {
-    // const userId = req.user?.id || req.query.userId; 
     const userId = req.user?._id?.toString() || req.query.userId;
     if (!userId) return res.status(401).json({ message: 'userId required' });
     const favs = await Favorite.find({ userId }).lean();
@@ -17,7 +16,6 @@ router.get('/', userAuth, async (req,res,next)=>{
 
 router.post('/:listingId', userAuth, async (req,res,next)=>{
    try {
-// -    const userId = req.user?.id || req.body.userId;
     const userId = req.user?._id?.toString() || req.body.userId;
      const { listingId } = req.params;
     if (!userId) return res.status(401).json({ message: 'userId required' });
@@ -28,7 +26,6 @@ router.post('/:listingId', userAuth, async (req,res,next)=>{
 
 router.delete('/:listingId', userAuth, async (req,res,next)=>{
    try {
-    // const userId = req.user?.id || req.query.userId;
     const userId = req.user?._id?.toString() || req.query.userId;
     if (!userId) return res.status(401).json({ message: 'userId required' });
      await Favorite.deleteOne({ userId, listingId: req.params.listingId });

@@ -366,7 +366,6 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
     const [minV, maxV] = debounced.priceRange;
     if (minV > 0) clean.min = minV;
     if (maxV < 1000) clean.max = maxV;
-    // if (debounced.condition) clean.condition = debounced.condition;
 
     const key = JSON.stringify(clean);
     if (key !== lastSentRef.current) {

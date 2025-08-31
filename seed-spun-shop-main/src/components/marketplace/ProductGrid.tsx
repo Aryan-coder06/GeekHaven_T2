@@ -131,7 +131,7 @@ export function ProductGrid({ products, viewMode = 'grid' }: ProductGridProps) {
         >
           <Card className="marketplace-card h-full">
             <CardContent className="p-0">
-              {/* Product Image */}
+              
               <div className="aspect-square overflow-hidden rounded-t-lg relative">
                 <img
                   src={product.image}
@@ -139,7 +139,6 @@ export function ProductGrid({ products, viewMode = 'grid' }: ProductGridProps) {
                   className="w-full h-full object-cover transition-transform group-hover:scale-105"
                 />
                 
-                {/* Overlay with stats */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors">
                   <div className="absolute top-2 right-2 flex items-center space-x-1 bg-black/50 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity">
                     <Eye className="w-3 h-3" />
@@ -169,28 +168,6 @@ export function ProductGrid({ products, viewMode = 'grid' }: ProductGridProps) {
                   {product.title}
                 </h3>
                 
-                {/* <div className="flex items-center justify-between mb-3">
-                  <span className="price-tag text-lg font-bold">
-                    ${product.price.toFixed(2)}
-                  </span>
-                  <div className="flex items-center space-x-1 text-xs text-muted-foreground">
-                    <Heart className="w-3 h-3" />
-                    <span>{product.likes}</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-2 mb-3 text-sm text-muted-foreground">
-                  <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-xs font-medium text-primary">
-                      {product.sellerName.charAt(0)}
-                    </span>
-                  </div>
-                  <span className="truncate">{product.sellerName}</span>
-                  <div className="flex items-center space-x-1">
-                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                    <span>{product.sellerRating.toFixed(1)}</span>
-                  </div>
-                </div> */}
                 <div className="flex items-center justify-between mb-3">
                   <span className="price-tag text-lg font-bold">
                     ${product?.price != null ? Number(product.price).toFixed(2) : '0.00'}

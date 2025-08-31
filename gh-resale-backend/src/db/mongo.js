@@ -13,7 +13,6 @@ export async function connectMongo(uri) {
   await mongoose.connect(uri, { serverSelectionTimeoutMS: 15000 });
   console.log('✅ Mongo connected');
 
-  // ensure important indexes (unique pairs, TTL, etc.)
   await Promise.all([
     User.createIndexes(),
     Listing.createIndexes(),

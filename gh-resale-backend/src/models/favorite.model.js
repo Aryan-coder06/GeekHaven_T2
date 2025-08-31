@@ -8,6 +8,7 @@ const favoriteSchema = new Schema({
 
 favoriteSchema.index({ userId: 1, listingId: 1 }, { unique: true });
 // backend/src/models/favorite.model.js
+// current model is working!
 const Favorite = mongoose.models.Favorite || mongoose.model('Favorite', favoriteSchema);
 export default Favorite;
 

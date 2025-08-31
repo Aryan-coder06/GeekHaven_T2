@@ -42,7 +42,6 @@
   { "title": "Gym Gloves", "description": "Grip & wrist wrap.", "price": 91.99, "category": "sports", "location": "Jaipur", "images": ["https://picsum.photos/seed/prod-38/800/600"] },
   { "title": "Running Shorts", "description": "Light, quick-dry.", "price": 112.99, "category": "sports", "location": "Ahmedabad", "images": ["https://picsum.photos/seed/prod-39/800/600"] },
   { "title": "Sports Bottle", "description": "BPA-free, 750ml.", "price": 17.99, "category": "sports", "location": "Kochi", "images": ["https://picsum.photos/seed/prod-40/800/600"] },
-
   { "title": "Novel Hardcover", "description": "Bestseller fiction.", "price": 14.99, "category": "books", "location": "Delhi", "images": ["https://picsum.photos/seed/prod-41/800/600"] },
   { "title": "Sci-Fi Paperback", "description": "Space opera saga.", "price": 9.99, "category": "books", "location": "Mumbai", "images": ["https://picsum.photos/seed/prod-42/800/600"] },
   { "title": "Cookbook", "description": "100 quick recipes.", "price": 16.50, "category": "books", "location": "Bengaluru", "images": ["https://picsum.photos/seed/prod-43/800/600"] },

@@ -9,8 +9,8 @@ import {
 } from '../../src/utils/seed.js';
 
 describe('Seed utilities (HMAC-based v2)', () => {
-  const seedA = 'GHW25-1239';
-  const seedB = 'GHW25-9999';
+  const seedA = 'FRONT25-1239';
+  const seedB = 'FRONT25-9999';
 
   test('parseSeedNumber: bounded, deterministic, seed-sensitive', () => {
     const a1 = parseSeedNumber(seedA);
