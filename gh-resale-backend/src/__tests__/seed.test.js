@@ -17,7 +17,7 @@ describe('Seed utilities (HMAC-based v2)', () => {
     const a2 = parseSeedNumber(seedA);
     const b1 = parseSeedNumber(seedB);
 
-    // bounds
+    // bounds (check karenge kya aur kese karna)
     expect(a1.asInt).toBeGreaterThanOrEqual(0);
     expect(a1.asInt).toBeLessThan(100);
     expect(a1.asMod10).toBeGreaterThanOrEqual(0);
@@ -25,9 +25,6 @@ describe('Seed utilities (HMAC-based v2)', () => {
 
     // deterministic for same seed
     expect(a1).toEqual(a2);
-
-    // likely different for different seeds
-    // (not mathematically guaranteed, but very likely)
     expect(`${a1.asInt}:${a1.asMod10}`).not.toEqual(`${b1.asInt}:${b1.asMod10}`);
   });
 
@@ -51,11 +48,7 @@ describe('Seed utilities (HMAC-based v2)', () => {
     // SKU-<id>-<8 HEX>-<2 digits>
     expect(s1a).toMatch(/^SKU-42-[A-F0-9]{8}-\d{2}$/);
     expect(s2a).toMatch(/^SKU-507f1f77bcf86cd799439011-[A-F0-9]{8}-\d{2}$/);
-
-    // deterministic for same seed & id
     expect(s1a).toBe(s1b);
-
-    // different seed should (almost surely) produce different SKU
     expect(s1a).not.toBe(s1c);
   });
 
