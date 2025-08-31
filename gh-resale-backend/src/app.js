@@ -72,7 +72,7 @@ const ALLOWLIST = new Set(
   raw.split(',').map(s => s.trim()).filter(Boolean)
 );
 if (ENV.NODE_ENV !== 'production') {
-  ['http://localhost:8080','http://127.0.0.1:8080','http://localhost:5173'].forEach(o => ALLOWLIST.add(o));
+  ['http://localhost:8080','http://127.0.0.1:8080', 'https://geekhaven-t2-1.onrender.com'].forEach(o => ALLOWLIST.add(o));
 }
 const corsOptions = {
   origin(origin, cb) {
