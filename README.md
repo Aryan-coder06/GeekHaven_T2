@@ -1,5 +1,10 @@
 # 🌐 GeekHaven Resale Marketplace
 
+# NAME: Aryan Saini
+# Roll No: IIT2024008
+## WEBSITE: https://geekhaven-t2-1.onrender.com/  
+
+
 A full-stack **Resale Marketplace** built with **React + TypeScript (Vite)** on the frontend and **Express.js + MongoDB (Mongoose)** on the backend.
 
 Supports **JWT cookie auth**, **buyer & seller profiles**, **listings with search/filters**, **favorites & cart**, **idempotent checkout with HMAC signatures**, and **deployment on Render**.
