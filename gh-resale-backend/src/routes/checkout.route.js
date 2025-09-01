@@ -73,8 +73,6 @@ const router = express.Router();
 router.post('/',  userAuth,  idempotency, async (req, res, next) => {
   try {
     const { items = [], subtotal = 0 } = req.body || {};
-
-    // If you want to cross-check items against DB:
     const ids = items.map((i) => i.listingId).filter(Boolean);
     const listings = ids.length
       ? await Listing.find({ _id: { $in: ids } }).lean()
@@ -97,7 +95,6 @@ router.post('/',  userAuth,  idempotency, async (req, res, next) => {
       platformFee,        // major units
       nFromSeed: seedNumber,
       chargedTotal: total,  
-      // You can include orderId/invoice/timestamp if you want:
       // orderId: `order_${Date.now()}`,
       // timestamp: new Date().toISOString(),
       // items: orderItems,
